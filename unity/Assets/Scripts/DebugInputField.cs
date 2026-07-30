@@ -569,7 +569,6 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                     action["renderInstanceSegmentation"] = true;
                     action["renderDepth"] = true;
 //                  action["antiAliasing"] = "smaa";
-                    action["massThreshold"] = 10.0f;
 
                     ActionDispatcher.Dispatch(AManager, new DynamicServerAction(action));
                     //CurrentActiveController().ProcessControlCommand(new DynamicServerAction(action), AManager);
@@ -4402,12 +4401,9 @@ namespace UnityStandardAssets.Characters.FirstPerson {
                         break;
                     }
                 case "smlhr": {
-                        ServerAction action = new ServerAction();
-                        action.action = "SetHandSphereRadius";
-
-                        if (splitcommand.Length == 2) {
-                            action.radius = float.Parse(splitcommand[1]);
-                        }
+                        Dictionary<string, object> action = new Dictionary<string, object>();
+                        action["action"] = "SetHandSphereRadius";
+                        action["radius"] = float.Parse(splitcommand[1]);
                         CurrentActiveController().ProcessControlCommand(action);
 
                         break;
@@ -5310,4 +5306,3 @@ namespace UnityStandardAssets.Characters.FirstPerson {
 
     }
 }
-
